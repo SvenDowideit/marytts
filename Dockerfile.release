@@ -1,0 +1,14 @@
+FROM java:jre
+
+WORKDIR /src
+
+# http://mary.dfki.de/download/index.html
+RUN wget http://mary.dfki.de/download/5.1.2/marytts-installer-5.1.2.zip
+RUN unzip marytts-installer-5.1.2.zip
+
+WORKDIR /src/marytts-installer-5.1.2/
+RUN ./marytts
+
+ENTRYPOINT ["/src/marytts-installer-5.1.2/marytts"]
+CMD ["tasks"]
+EXPOSE 80
